@@ -26,17 +26,28 @@ const Page = () => {
 
     return (
         <div>
+        <div className={'container-cards'}>
             {
                 moviesArray.map(value =>
-                <div key={value.id}>
+                <div className={'card-container'} key={value.id}>
+
+
+                        <img src={`https://image.tmdb.org/t/p/w1280${value.poster_path}`}
+                            alt={value.title}/>
+
 
                     {value.title}
-                    {/*<img src={value.poster_path} alt={value.title}/>*/}
+
+
 
                 </div>)
             }
 
-            <Pagination value={currentPage} onChange={pageChange} total={500} color="rgba(170, 0, 0, 1)" radius="md" withEdges/>
+        </div>
+            <div className={'pagination-container'}>
+                <Pagination className={'pagination'} value={currentPage} onChange={pageChange}
+                            total={500} color="rgba(170, 0, 0, 1)" size={'xl'} radius="md" withEdges/>
+            </div>
         </div>
     );
 };
