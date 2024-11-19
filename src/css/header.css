@@ -43,6 +43,7 @@ nav a {
     width: 10%;
     height: 50%;
     border-radius: 5px;
+    border: 2px #aa0000 solid;
 }
 
 nav a:hover {
