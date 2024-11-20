@@ -45,12 +45,14 @@ nav a {
     width: 10%;
     height: 50%;
     border-radius: 5px;
-    border: 2px #aa0000 solid;
+
 }
 
 nav a:hover {
     background-color: #aa0000;
     transition: 0.5s;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px 2px rgb(128, 0, 0);
     width: 10%;
     height: 50%;
 }
