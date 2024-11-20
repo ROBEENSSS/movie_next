@@ -1,12 +1,13 @@
-'use client'
+'use client';
 
 import React, {useEffect, useState} from 'react';
-// import {movieService} from "@/services/movieService";
 import {IMovieParams} from "../../../../IMovie";
 import '../../../css/cards.css'
 import {Pagination} from "@mantine/core";
 import {useSearchParams} from "react-router-dom";
 import {movieService} from "@/services/api.service";
+import MovieListCardComponent from "@/components/MovieListCardComponent";
+import MoviesListComponent from "@/components/MoviesListComponent";
 
 
 const Page = () => {
@@ -38,17 +39,9 @@ const Page = () => {
             </div>
             <div className={'container-cards'}>
                 {
-                    moviesArray.map(value =>
-                        <div className={'card-container'} key={value.id}>
-
-
-                            <img src={`https://image.tmdb.org/t/p/w1280${value.poster_path}`}
-                                 alt={value.title}/>
-
-
-                            {value.title}
-
-
+                    moviesArray.map(movie =>
+                        <div className={'card-container'} key={movie.id}>
+                            <MoviesListComponent movie={movie}/>
                         </div>)
                 }
 

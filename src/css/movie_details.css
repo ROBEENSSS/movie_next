@@ -1,0 +1,84 @@
+.details-movie-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 178px 24px 24px 24px;
+    color: #f4f4f4;
+    background-color: #121212; /* Тёмный фон */
+    height: 100vh; /* Высота экрана */
+    font-family: Arial, sans-serif;
+    gap: 80px; /* Расстояние между постером и текстом */
+    box-sizing: border-box; /* Учитываем padding */
+    overflow: hidden; /* Убираем скролл */
+}
+
+/* Стиль постера */
+.movie-poster {
+    width: 450px;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgb(0, 0, 0);
+    transition: 1s ease;
+}
+
+
+/* Стиль секции с описанием */
+.movie-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 500px;
+    text-align: left;
+    line-height: 1.6;
+    font-size: 1rem;
+    color: #ccc;
+    gap: 10px; /* Расстояние между блоками текста */
+}
+
+/* Заголовок */
+.movie-title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 16px;
+    text-align: left;
+    color: #ff5555; /* Красный акцент */
+}
+
+/* Подзаголовки */
+.movie-info h2 {
+    font-size: 1.2rem;
+    color: #ff5555;
+    margin-bottom: 8px;
+    border-bottom: 1px solid #ff5555;
+    padding-bottom: 4px;
+}
+
+
+
+/* Кнопка назад */
+.back-button {
+    display: inline-block;
+    text-align: center;
+    margin: 20px auto 0;
+    padding-top: 10px;
+    width: 20%;
+    height: 45px;
+    background-color: #000000;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: 0.5s ;
+    box-shadow: 0 10px 20px 2px rgb(66, 0, 0);
+}
+
+.back-button:hover {
+    background-color: #aa0000;
+    transition: 0.5s;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px 2px rgb(128, 0, 0);
+}

@@ -1,7 +1,7 @@
 'use client'
 
 import React from 'react';
-import Page from "@/app/(cards)/cards/page";
+import Page from "@/app/(movies)/movies/page";
 import '@mantine/core/styles.css';
 import {createTheme, MantineProvider} from "@mantine/core";
 import {BrowserRouter} from "react-router-dom";
