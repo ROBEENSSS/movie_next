@@ -20,3 +20,11 @@ export interface IMovieParams {
 	vote_average: number;
 	vote_count: number;
 }
+
+export interface IGenres {
+	genres: IGenresParams[];
+}
+export interface IGenresParams {
+	id: number;
+	name: string;
+}

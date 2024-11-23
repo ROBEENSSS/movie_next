@@ -19,7 +19,12 @@
     height: auto;
     border-radius: 12px;
     box-shadow: 0 4px 8px rgb(0, 0, 0);
-    transition: 1s ease;
+    transition: 10s;
+}
+
+.movie-poster:hover {
+    box-shadow: 0 4px 8px rgb(57, 0, 0);
+    transition: 0.5s;
 }
 
 

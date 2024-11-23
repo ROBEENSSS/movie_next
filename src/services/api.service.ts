@@ -1,4 +1,4 @@
-import {IMovie, IMovieParams} from "../../IMovie";
+import {IGenres, IMovie, IMovieParams} from "../../IMovie";
 
 const baseURL: string = 'https://api.themoviedb.org/3';
 const headers = {
@@ -8,16 +8,16 @@ const headers = {
     }
 };
 
-const {moviesPageURL, movieInfo,allItems} = {
-    moviesPageURL: '/discover/movie?page=',
+const {moviesPageURL, movieInfo, genresList, allItems} = {
+    moviesPageURL: '/discover/movie',
     movieInfo: '/movie/',
+    genresList: '/genre/movie/list',
     allItems: (url: string) => baseURL + url,
-    // singleItems: (id: string | number, url: string) => base + url + '/' + id,
-}
+};
 
 export const movieService = {
-    getMovies: async (page: string):Promise<IMovie> => {
-        const pages = await fetch(allItems(moviesPageURL + `${page}`), headers)
+    getMovies: async (page: string): Promise<IMovie> => {
+        const pages = await fetch(allItems(moviesPageURL + `?page=${page}`), headers)
             .then(value => value.json());
         return pages;
     },
@@ -26,5 +26,17 @@ export const movieService = {
         const movie = await fetch(allItems(movieInfo + `${id}`), headers)
             .then(value => value.json());
         return movie;
+    },
+
+    getGenres: async (): Promise<IGenres> => {
+        const genres = await fetch(allItems(genresList), headers)
+            .then(value => value.json());
+        return genres;
+    },
+
+    getMoviesByGenre: async (genreId: number, page: string = '1'): Promise<IMovie> => {
+        const movies = await fetch(allItems(moviesPageURL + `?with_genres=${genreId}&page=${page}`), headers)
+            .then(value => value.json());
+        return movies;
     }
-}
+};

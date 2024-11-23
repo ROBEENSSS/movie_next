@@ -1,0 +1,34 @@
+
+
+.user-info {
+    display: flex;
+    align-items: center;
+}
+
+.user-avatar {
+    margin-right: 8px;
+}
+
+.avatar-circle {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #915e5e; /* Можно поменять цвет */
+}
+
+.avatar-circle-2 {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #00bc3d;
+    border: 1px solid black;
+}
+
+.user-name {
+    font-size: 14px;
+    color: #ffffff;
+}
+
+.user-name p {
+    font-size: 10px;
+}
