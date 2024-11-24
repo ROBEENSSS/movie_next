@@ -25,8 +25,8 @@
 
 nav {
     display: flex;
-    justify-content: space-evenly;
-    margin: 0 20px 0 20px;
+    justify-content: space-between;
+    margin: 0 40px;
     align-items: center;
     gap: 40px;
     font-size: 16px;
@@ -110,5 +110,5 @@ nav a:hover, button:hover {
 }
 
 .dropdown-menu.show {
-    max-height: 800px; /* Открытое состояние (можно настроить под размер меню) */
+    max-height: 800px;
 }

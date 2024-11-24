@@ -1,6 +1,8 @@
+
+
 import type { Metadata } from "next";
 import React from "react";
-import HeaderComponent from "@/components/HeaderComponent";
+import Header from "@/components/Header/Header";
 
 
 export const metadata: Metadata = {
@@ -11,10 +13,12 @@ export const metadata: Metadata = {
 type Props = Readonly<{children: React.ReactNode}>
 
 const RootMovie = ({children}: Props) => {
+
+
   return (
     <html lang="en">
       <body>
-      <HeaderComponent/>
+      <Header/>
         {children}
       </body>
     </html>

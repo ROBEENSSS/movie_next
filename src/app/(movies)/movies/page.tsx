@@ -1,67 +1,90 @@
 'use client';
 
-import React, {useEffect, useState} from 'react';
-import {IMovieParams} from "../../../../IMovie";
-import '../../../css/cards.css';
-import {Pagination} from "@mantine/core";
-import {useSearchParams} from "react-router-dom";
-import {movieService} from "@/services/api.service";
-import MoviesListComponent from "@/components/MoviesListComponent";
-import HeaderComponent from "@/components/HeaderComponent";
+import React, { useEffect, useState } from 'react';
+import { useSearchParams } from 'next/navigation';
+import { IMovieParams } from "../../../../IMovie";
+import { movieService } from "@/services/api.service";
+import { Pagination } from "@mantine/core";
+import MoviesListCards from "@/components/Movies_List_Cards/MoviesListCards";
+import Header from "@/components/Header/Header";
 
-const Page = () => {
+const MainPage = () => {
     const [moviesArray, setMoviesArray] = useState<IMovieParams[]>([]);
-    const [query, setQuery] = useSearchParams({page: '1'});
-    const [currentGenre, setCurrentGenre] = useState<number | null>(null);
-
-    const currentPage = Number(query.get('page')) || 1;
-    const pageChange = (page: number) => {
-        setQuery({page: page.toString()});
-    };
+    const searchParams = useSearchParams();
+    const currentPage = Number(searchParams.get('page')) || 1;
+    const currentGenre = Number(searchParams.get('genre')) || null;
 
     useEffect(() => {
-        if (currentGenre) {
-            movieService.getMoviesByGenre(currentGenre, currentPage.toString()).then((data) => {
+
+        const fetchMovies = async () => {
+            try {
+                const data = currentGenre
+                    ? await movieService.getMoviesByGenre(currentGenre, currentPage.toString())
+                    : await movieService.getMovies(currentPage.toString());
                 setMoviesArray(data.results);
-            });
-        } else {
-            movieService.getMovies(currentPage.toString()).then((data) => {
-                setMoviesArray(data.results);
-            });
-        }
+            } catch (error) {
+                console.error("Error fetching movies:", error);
+            }
+        };
+        fetchMovies();
     }, [currentPage, currentGenre]);
 
     useEffect(() => {
-        window.scrollTo({top: 0, behavior: 'smooth'});
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     }, [currentPage]);
 
     const handleGenreSelect = (genreId: number) => {
-        setCurrentGenre(genreId);
-        setQuery({page: '1'}); // Сброс страницы при смене жанра
+
+        const params = new URLSearchParams(searchParams.toString());
+        params.set('genre', genreId.toString());
+        params.set('page', '1');
+        window.history.pushState(null, '', `/?${params.toString()}`);
     };
 
     return (
         <div>
-            <HeaderComponent selectGenre={handleGenreSelect}/>
-            <div className={'pagination-top-container'}>
-                <Pagination className={'pagination'} value={currentPage} onChange={pageChange}
-                            total={500} color="rgba(170, 0, 0, 1)" size={'md'} radius="lg"
-                            withEdges/>
+            <Header selectGenre={handleGenreSelect } />
+            <div className="pagination-top-container">
+                <Pagination
+                    className="pagination"
+                    value={currentPage}
+                    onChange={(page) => {
+                        const params = new URLSearchParams(searchParams.toString());
+                        params.set('page', page.toString());
+                        window.history.pushState(null, '', `/?${params.toString()}`);
+                    }}
+                    total={500}
+                    color="rgba(170, 0, 0, 1)"
+                    size="md"
+                    radius="lg"
+                    withEdges
+                />
             </div>
-            <div className={'container-cards'}>
-                {moviesArray.map(movie => (
-                    <div className={'card-container'} key={movie.id}>
-                        <MoviesListComponent movie={movie}/>
+            <div className="container-cards">
+                {moviesArray.map((movie) => (
+                    <div className="card-container" key={movie.id}>
+                        <MoviesListCards movie={movie} />
                     </div>
                 ))}
             </div>
-            <div className={'pagination-btn-container'}>
-                <Pagination className={'pagination'} value={currentPage} onChange={pageChange}
-                            total={500} color="rgba(170, 0, 0, 1)" size={'xl'} radius="md"
-                            withEdges/>
+            <div className="pagination-btn-container">
+                <Pagination
+                    className="pagination"
+                    value={currentPage}
+                    onChange={(page) => {
+                        const params = new URLSearchParams(searchParams.toString());
+                        params.set('page', page.toString());
+                        window.history.pushState(null, '', `/?${params.toString()}`);
+                    }}
+                    total={500}
+                    color="rgba(170, 0, 0, 1)"
+                    size="xl"
+                    radius="md"
+                    withEdges
+                />
             </div>
         </div>
     );
 };
 
-export default Page;
+export default MainPage;

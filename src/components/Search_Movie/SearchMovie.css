@@ -1,0 +1,38 @@
+.movie-search {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 15px;
+}
+
+.movie-search input {
+    border-radius: 20px;
+    padding: 10px;
+    background-color: black;
+    transition: 0.5s;
+    border: none;
+    color: white;
+    border-bottom: 1px solid #ff0000;
+}
+
+.movie-search input::placeholder {
+    color: white;
+}
+
+.movie-search input:hover {
+    box-shadow: 0 8px 15px 1px rgb(128, 0, 0);
+    transition: 0.5s;
+}
+
+.movie-search button {
+    border: none;
+    background-color: #000000;
+    border-radius: 40%;
+    width: 42px;
+    height: 42px;
+    border-bottom: 1px solid #ff0000;
+}
+.movie-search button:hover {
+    transform: none;
+}

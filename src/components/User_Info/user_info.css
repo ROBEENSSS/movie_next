@@ -3,6 +3,7 @@
 .user-info {
     display: flex;
     align-items: center;
+    justify-content: flex-end;
 }
 
 .user-avatar {
@@ -13,7 +14,7 @@
     width: 30px;
     height: 30px;
     border-radius: 50%;
-    background-color: #915e5e; /* Можно поменять цвет */
+    background-color: #915e5e;
 }
 
 .avatar-circle-2 {

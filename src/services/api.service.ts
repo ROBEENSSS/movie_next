@@ -38,5 +38,11 @@ export const movieService = {
         const movies = await fetch(allItems(moviesPageURL + `?with_genres=${genreId}&page=${page}`), headers)
             .then(value => value.json());
         return movies;
+    },
+
+    search: async (request: string, page: string): Promise<IMovie> => {
+        const pages = await fetch(`${baseURL}/search/movie?query=${request}&page=${page}`, headers)
+            .then(value => value.json());
+        return pages;
     }
 };

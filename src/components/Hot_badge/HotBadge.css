@@ -1,0 +1,13 @@
+.hot-badge {
+    background-color: rgba(255, 69, 0, 0.8);
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    text-transform: uppercase;
+    padding: 4px 8px;
+    border-radius: 12px;
+    position: absolute;
+    top: 180px;
+    z-index: 10;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
